@@ -2,15 +2,17 @@ This is early stage documentation. The first one works pretty well if you follow
 
 Note:This documentation is subject to change.
 
+Dependencies:PyExcellerator, Django 1.0 and above.
+
 Follow the steps
 
-move exceller.pt file into your djangopath.
+move exceller.py file into your djangopath.
 
 Once you have created a queryset, if you want to generate an excel sheet from the content, you mereley need to instantiate the class Excellor and run the method create_excel.
 
 Here is a sample. 
 
-Imagine the Model
+Consider the Model
 
 
 class Deposit(models.Model):
@@ -37,11 +39,15 @@ deposits =Deposit.objects.all()
 ex= Excellor(deposits, fields =["type", "bank", "name", "date", "amount"], filename ="deposits.xls", path="/var/www/tally/static_media/")
 ex.create_excel()
 
-The last command should create the excel file, which you can import it into your favorite spreadsheetprogram and mess around with.
+The last command should create the excel file, which you can import it into your favorite spreadsheetprogram and mess around with. There are couple of helper functions, please see the code for more...
 
-There are number of stuff which still needs to be done.I will do that as and when I have time.
 
-In case you need some help, assistance or have suggestions for improvments, please let me know on ramdaz AT gmail DOt com.
 
-Use the 
+Ensure that you write permissions to the path, and correct spellings of the fields are provided.
+
+There are number of stuff which still needs to be done.I will do that as and when I have time, including integrating tests and exception routines. Also there are couple of advanced classes that lets you create excel documents where data can be spread across multiple sheets.
+
+In case you need some help, assistance, feature requests, suggestions for improvments, please let me know on ramdaz AT gmail DOt com.
+
+
 
