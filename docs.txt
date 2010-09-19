@@ -1,0 +1,47 @@
+This is early stage documentation. The first one works pretty well if you follow instructions carefully!
+
+Note:This documentation is subject to change.
+
+Follow the steps
+
+move exceller.pt file into your djangopath.
+
+Once you have created a queryset, if you want to generate an excel sheet from the content, you mereley need to instantiate the class Excellor and run the method create_excel.
+
+Here is a sample. 
+
+Imagine the Model
+
+
+class Deposit(models.Model):
+	
+    type = models.CharField(max_length=8, choices= deposit_types)
+    bank = models.ForeignKey(Bank)
+    name = models.CharField(max_length=100)
+    date = models.DateField("Deposit Date")
+    amount = models.DecimalField( max_digits=7, decimal_places=1)
+    .....
+
+    def __unicode__(self):
+       return self.name
+
+
+Consider that we have say 1000s of deposit records
+
+To create an Excel File follow these steps
+
+from exceller.exceller import Excellor
+
+deposits =Deposit.objects.all()
+
+ex= Excellor(deposits, fields =["type", "bank", "name", "date", "amount"], filename ="deposits.xls", path="/var/www/tally/static_media/")
+ex.create_excel()
+
+The last command should create the excel file, which you can import it into your favorite spreadsheetprogram and mess around with.
+
+There are number of stuff which still needs to be done.I will do that as and when I have time.
+
+In case you need some help, assistance or have suggestions for improvments, please let me know on ramdaz AT gmail DOt com.
+
+Use the 
+
